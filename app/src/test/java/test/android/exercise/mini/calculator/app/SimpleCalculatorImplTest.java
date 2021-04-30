@@ -29,7 +29,7 @@ public class SimpleCalculatorImplTest {
   public void when_inputIsMinus_then_outputShouldBeCorrect(){
     SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
     calculatorUnderTest.insertMinus();
-    String expected = "???"; // TODO: decide the expected output when having a single minus
+    String expected = "0-"; // TODO: decide the expected output when having a single minus
     assertEquals(expected, calculatorUnderTest.output());
   }
 
@@ -47,12 +47,30 @@ public class SimpleCalculatorImplTest {
 
   @Test
   public void when_callingDeleteLast_then_lastOutputShouldBeDeleted(){
+
     // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(5);
+    calculatorUnderTest.insertPlus();
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(7);
+    calculatorUnderTest.deleteLast();
+    assertEquals("5+1", calculatorUnderTest.output());
   }
 
   @Test
   public void when_callingClear_then_outputShouldBeCleared(){
     // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(9);
+    calculatorUnderTest.insertPlus();
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(7);
+    calculatorUnderTest.clear();
+    assertEquals("0", calculatorUnderTest.output());
   }
 
   @Test
@@ -80,10 +98,207 @@ public class SimpleCalculatorImplTest {
   public void when_savingStateFromFirstCalculator_should_loadStateCorrectlyFromSecondCalculator(){
     SimpleCalculatorImpl firstCalculator = new SimpleCalculatorImpl();
     SimpleCalculatorImpl secondCalculator = new SimpleCalculatorImpl();
+    firstCalculator.insertDigit(5);
+    firstCalculator.insertDigit(1);
+    firstCalculator.insertMinus();
+    firstCalculator.insertDigit(9);
+    Serializable first_state = firstCalculator.saveState();
+    assertNotNull(first_state);
+    secondCalculator.loadState(first_state);
+    assertEquals("51-9", secondCalculator.output());
+
+
     // TODO: implement the test based on this method's name.
     //  you can get inspiration from the test method `when_savingState_should_loadThatStateCorrectly()`
   }
 
+  @Test
+  public void equals_1(){
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(5);
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertPlus();
+    calculatorUnderTest.insertDigit(2);
+
+    assertEquals("51+2", calculatorUnderTest.output());
+  }
+
+
+
+  @Test
+  public void equals_2(){
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(5);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertEquals();
+
+    assertEquals("4", calculatorUnderTest.output());
+  }
+
+
+  @Test
+  public void equals_3() {
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(5);
+    calculatorUnderTest.insertPlus();
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(7);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(3);
+    calculatorUnderTest.deleteLast();
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertDigit(5);
+    assertEquals("5+17-125", calculatorUnderTest.output());
+
+  }
+
+    @Test
+    public void equals_4(){
+      // todo: implement test
+      SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+      // give some input
+      calculatorUnderTest.insertDigit(9);
+      calculatorUnderTest.clear();
+      calculatorUnderTest.insertDigit(1);
+      calculatorUnderTest.insertDigit(2);
+      calculatorUnderTest.clear();
+      calculatorUnderTest.insertDigit(8);
+      calculatorUnderTest.insertMinus();
+      calculatorUnderTest.insertDigit(7);
+      calculatorUnderTest.insertEquals();
+      assertEquals("1", calculatorUnderTest.output());
+  }
+  @Test
+  public void equals_5(){
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(7);
+    calculatorUnderTest.insertEquals();
+    calculatorUnderTest.insertPlus();
+    calculatorUnderTest.insertDigit(4);
+    calculatorUnderTest.insertEquals();
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertEquals();
+
+    assertEquals("4", calculatorUnderTest.output());
+  }
+
+
+  @Test
+  public void equals_6(){
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(9);
+    calculatorUnderTest.insertDigit(9);
+    calculatorUnderTest.insertDigit(9);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertEquals();
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(3);
+    calculatorUnderTest.insertDigit(3);
+    calculatorUnderTest.insertDigit(3);
+
+    assertEquals("-111-333", calculatorUnderTest.output());
+  }
+
+
+  @Test
+  public void equals_7(){
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(9);
+    calculatorUnderTest.insertDigit(5);
+    calculatorUnderTest.clear();
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertEquals();
+
+
+    assertEquals("666", calculatorUnderTest.output());
+  }
+  @Test
+  public void equals_8(){
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(0);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(8);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(1);
+
+
+
+    assertEquals("10-8-1", calculatorUnderTest.output());
+  }
+
+
+  @Test
+  public void equals_9(){
+    // todo: implement test
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(0);
+    calculatorUnderTest.insertDigit(0);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertPlus();
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertMinus();
+    calculatorUnderTest.insertDigit(1);
+
+
+
+    assertEquals("100-2-1", calculatorUnderTest.output());
+  }
+
+  @Test
+  public void equals_10(){
+    SimpleCalculatorImpl firstCalculator = new SimpleCalculatorImpl();
+    SimpleCalculatorImpl secondCalculator = new SimpleCalculatorImpl();
+    firstCalculator.insertDigit(1);
+    firstCalculator.insertDigit(1);
+    firstCalculator.insertMinus();
+    firstCalculator.insertDigit(9);
+    firstCalculator.insertEquals();
+    Serializable first_state = firstCalculator.saveState();
+    assertNotNull(first_state);
+    secondCalculator.loadState(first_state);
+    assertEquals("2", secondCalculator.output());
+
+
+    // TODO: implement the test based on this method's name.
+    //  you can get inspiration from the test method `when_savingState_should_loadThatStateCorrectly()`
+  }
   // TODO:
   //  the existing tests are not enough since they only test simple use-cases with small inputs.
   //  write at least 10 methods to test correct behavior with complicated inputs or use-cases.
