@@ -89,5 +89,145 @@ public class AppFlowTest {
     assertEquals("11", textViewOutput.getText().toString());
   }
 
+
+
+  @Test
+  public void flowTest3(){
+    // run clicks on "7+5<backspace>4="
+    for (View button: Arrays.asList(
+            button1, buttonPlus, button9,  button9, buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("100", textViewOutput.getText().toString());
+  }
+
+
+  @Test
+  public void flowTest4(){
+    // run clicks on "0+4-2="
+    for (View button: Arrays.asList(
+            button0, button4, buttonMinus,  button2, buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("2", textViewOutput.getText().toString());
+  }
+
+
+  @Test
+  public void flowTest5(){
+    // run clicks on "C1-0+"
+    for (View button: Arrays.asList(
+            buttonClear, button1, buttonMinus,  button0, buttonPlus
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("1-0+", textViewOutput.getText().toString());
+  }
+
+
+  @Test
+  public void flowTest6(){
+    // run clicks on "+1-1+0=="
+    for (View button: Arrays.asList(
+            buttonPlus, button1, buttonMinus,  button1, buttonPlus, button0,buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("0", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest7(){
+    // run clicks on "<backspace>7-1+9="
+    for (View button: Arrays.asList(
+            buttonBackspace, button7, buttonMinus,  button1, buttonPlus, button9,buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("15", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest8(){
+    // run clicks on "+-25+1="
+    for (View button: Arrays.asList(
+            buttonPlus, buttonMinus, button2,  button5, buttonPlus, button1,buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("26", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest9(){
+    // run clicks on "-+25+1="
+    for (View button: Arrays.asList(
+            buttonMinus, buttonPlus, button2,  button5, buttonPlus, button1,buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("-24", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest10(){
+    // run clicks on "+122+1="
+    for (View button: Arrays.asList(
+            buttonPlus, button1, button2,  button2, buttonPlus, button1,buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("123", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest11(){
+    // run clicks on "<backspace>12=<backspace>+-0="
+    for (View button: Arrays.asList(
+            buttonBackspace, button1, button2,  buttonBackspace, buttonPlus, buttonMinus, button0,buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("1", textViewOutput.getText().toString());
+  }
+
+
+  @Test
+  public void flowTest12(){
+    // run clicks on "12100<backspace><backspace>-1="
+    for (View button: Arrays.asList(
+            button1, button2, button1, button0, button0,buttonBackspace, buttonBackspace, buttonMinus, button1,buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("120", textViewOutput.getText().toString());
+  }
+
+
+  @Test
+  public void flowTest13(){
+    // run clicks on "7C0<backspace><backspace>-+1="
+    for (View button: Arrays.asList(
+            button7, buttonClear, button1, button0, button0,buttonBackspace, buttonBackspace, buttonMinus, buttonPlus, button1
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("1-1", textViewOutput.getText().toString());
+  }
+
+
   // TODO: add at last 10 more flow tests
 }
